@@ -7,7 +7,8 @@ import 'package:gap/gap.dart';
 
 class TicketView extends StatelessWidget {
   final Map<String, dynamic> ticket;
-  const TicketView({Key? key, required this.ticket}) : super(key: key);
+  final bool? isColor;
+  const TicketView({Key? key, required this.ticket, this.isColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class TicketView extends StatelessWidget {
             /*  showing the blue part of the card/ticket*/
             Container(
               decoration:  BoxDecoration(
-                color: Color(0xFF526799),
+                color: isColor==null? Color(0xFF526799):Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(AppLayout.getHeight(21)),topRight: Radius.circular(AppLayout.getHeight(21))),
               ),
               padding:  EdgeInsets.all(AppLayout.getHeight(16)),
