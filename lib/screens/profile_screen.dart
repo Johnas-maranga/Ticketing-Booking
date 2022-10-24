@@ -16,6 +16,7 @@ class ProfileScreen extends StatelessWidget {
          children: [
            Gap(AppLayout.getHeight(40)),
            Row(
+             crossAxisAlignment: CrossAxisAlignment.start,
              children: [
                Container(
                  height: AppLayout.getHeight(86),
@@ -45,17 +46,35 @@ class ProfileScreen extends StatelessWidget {
                        borderRadius: BorderRadius.circular(AppLayout.getHeight(100)),
                        color: const Color(0xFFFEF4F3),
                      ),
+                     padding:EdgeInsets.symmetric(horizontal: AppLayout.getHeight(3),vertical: AppLayout.getHeight(3)) ,
                      child: Row(
                        children: [
                          Container(
-                           decoration: BoxDecoration(
+                           padding: EdgeInsets.all(3) ,
+                           decoration: const BoxDecoration(
                              shape: BoxShape.circle,
-                             color: const Color(0xFF526799),
+                             color: Color(0xFF526799),
                            ),
-                           child: Icon(FluentSystemIcons.ic_fluent_shield_filled),
-                         )
+                           child: const Icon(FluentSystemIcons.ic_fluent_shield_filled,
+                           color: Colors.white, size:15
+                           ),
+                         ),
+                         Gap(AppLayout.getHeight(5)),
+                         const Text("Premium Status",style: TextStyle(
+                           color: Color(0xFF526799), fontWeight: FontWeight.w600
+                         ),),
+                         Gap(AppLayout.getHeight(5)),
                        ],
                      ),
+                   ),
+
+                     ],
+                   ),
+               const Spacer(),
+               Column(
+                 children: [
+                   Text(
+                     "Edit", style:Styles.textStyle.copyWith(color: Styles.primaryColor, fontWeight:FontWeight.w300 ),
                    )
                  ],
                )
