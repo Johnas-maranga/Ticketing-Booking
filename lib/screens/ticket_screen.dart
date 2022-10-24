@@ -3,9 +3,11 @@ import 'package:booktickets/utils/app_info_list.dart';
 import 'package:booktickets/utils/app_layout.dart';
 import 'package:booktickets/utils/app_styles.dart';
 import 'package:booktickets/widgets/column_layout.dart';
+import 'package:booktickets/widgets/layout_builder_widget.dart';
 import 'package:booktickets/widgets/ticket_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:barcode_widget/barcode_widget.dart';
 
 class TicketScreen extends StatelessWidget {
   const TicketScreen({Key? key}) : super(key: key);
@@ -28,23 +30,84 @@ class TicketScreen extends StatelessWidget {
               padding: EdgeInsets.only(left: AppLayout.getHeight(15)),
               child: TicketView(ticket: ticketList[0], isColor: true,),
             ),
-            SizedBox(height: 1,),
+            const SizedBox(height: 1,),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
-              margin: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:  [
-                      AppColumnLayout( firstText: "Maranga F/A",secondText: "Passenger",alignment: CrossAxisAlignment.start,),
-                      AppColumnLayout( firstText: "4531 0636",secondText: "Passport",alignment: CrossAxisAlignment.end,)
+                    children:  const [
+                      AppColumnLayout( firstText: "Maranga F/A",secondText: "Passenger",alignment: CrossAxisAlignment.start, isColor: false,),
+                      AppColumnLayout( firstText: "4531 5934 0636",secondText: "Passport",alignment: CrossAxisAlignment.end,isColor: false,)
                     ],
-                  )
+                  ),
+                  Gap(AppLayout.getHeight(20)),
+                   const AppLayoutBuilderWidget(sections: 15, isColor: false, width: 5,),
+                  Gap(AppLayout.getHeight(20)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children:  const [
+                      AppColumnLayout( firstText: "QZ12457AB",secondText: "Number of E-ticket",alignment: CrossAxisAlignment.start, isColor: false,),
+                      AppColumnLayout( firstText: "KQ315AI",secondText: "Booking Code",alignment: CrossAxisAlignment.end,isColor: false,)
+
+                    ],
+                  ),
+                  Gap(AppLayout.getHeight(20)),
+                  const AppLayoutBuilderWidget(sections: 15, isColor: false, width: 5,),
+                  Gap(AppLayout.getHeight(20)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset("assets/images/visa.png",scale: 11,),
+                              Text('**** 2043',style: Styles.headLineStyle3,)
+                            ],
+                          ),
+                          Gap(5),
+                          Text("Payment Method", style: Styles.headLineStyle4,),
+                        ],
+                      ),
+                      const AppColumnLayout( firstText: "\Ksh. 6780",secondText: "Price",alignment: CrossAxisAlignment.end, isColor: false,),
+
+
+                    ],
+                  ),
+
                 ],
               ),
-            )
+            ),
+            /*Bar Code*/
+            const SizedBox(height: 1,),
+            Container(
+              decoration:  BoxDecoration(
+                  color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(AppLayout.getHeight(21)),bottomLeft: Radius.circular(AppLayout.getHeight(21))
+                )
+              ),
+              margin: EdgeInsets.only(left: AppLayout.getHeight(15),right: AppLayout.getHeight(15)),
+              padding: EdgeInsets.only(top: AppLayout.getHeight(20), bottom: AppLayout.getHeight(20)),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: AppLayout.getHeight(15)),
+                child: ClipRRect(
+                  borderRadius:BorderRadius.circular(AppLayout.getHeight(15)),
+                  child: BarcodeWidget(barcode: Barcode.code128(), data: 'http://github.com/johnas-maranga',drawText: false,color: Styles.textColor,
+                    width: double.infinity,height: 70,
+                  ),
+                ),
+              ),
+            ),
+            Gap(AppLayout.getHeight(20)),
+            Container(
+              padding: EdgeInsets.only(left: AppLayout.getHeight(15)),
+              child: TicketView(ticket: ticketList[0],),
+            ),
           ],
         ),
         ]),
