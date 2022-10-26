@@ -74,8 +74,6 @@ class TicketScreen extends StatelessWidget {
                         ],
                       ),
                       const AppColumnLayout( firstText: "\Ksh. 6780",secondText: "Price",alignment: CrossAxisAlignment.end, isColor: false,),
-
-
                     ],
                   ),
 
